@@ -24,6 +24,7 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "25.05"; # Did you read the comment?
 
+
   environment.systemPackages = with pkgs; [
     vim
     neovim
@@ -85,6 +86,7 @@
     gnumake 
     cmake 
     binutils 
+    coreutils
     glibc.dev 
     pkg-config
     openssl
@@ -95,6 +97,8 @@
     watchexec
     git
     lazygit
+    docker
+    podman
   ];
 
 }
