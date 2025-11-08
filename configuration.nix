@@ -97,6 +97,7 @@
 
     # c
     gcc
+    clang
     gnumake 
     cmake 
 
