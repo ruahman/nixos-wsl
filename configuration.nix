@@ -29,9 +29,70 @@
     neovim
     rustup
     go
+    gopls
+    delve
     zig
-    python3
-    ruby
+    zls
+    pyright
+    (pkgs.python3.withPackages (ps: with ps; [
+      ipython
+      pytest
+      requests
+      numpy
+      pandas
+      matplotlib
+      jupyterlab 
+      marimo
+      flask
+      pyzmq
+      mypy
+      ruff
+      isort
+    ]))
+    (ruby.withPackages (ps: with ps; [
+      nokogiri
+      pry
+      bundler
+      solargraph
+    ]))
+    nodejs
+    (pkgs.buildEnv {
+      name = "npm-packages";
+      paths = with pkgs.nodePackages; [
+        typescript
+        ts-node
+        eslint
+        prettier
+        vscode-langservers-extracted  # for HTML/CSS/JSON
+        typescript-language-server
+      ];
+      # Optional: add node_modules/.bin to PATH
+      pathsToLink = [ "/bin" ];
+    })
+    lua51Packages.lua
+    lua51Packages.luarocks
+    lua51Packages.luacheck
+    lua-language-server
+    stylua
+    tree-sitter
+    sqlite
+    ripgrep
+    fzf
+    tree
+    jq
+    bat
+    gcc
+    gnumake 
+    cmake 
+    binutils 
+    glibc.dev 
+    pkg-config
+    openssl
+    openssl.dev
+    protobuf
+    nasm
+    just
+    watchexec
     git
     lazygit
   ];
