@@ -34,6 +34,7 @@
 
     # rust
     rustup
+    # rust-analyzer
 
     # golang
     go
