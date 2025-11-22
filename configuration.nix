@@ -26,6 +26,10 @@
 
   programs.nix-ld.enable = true;
 
+  nixpkgs.overlays = [
+    (import (builtins.fetchTarball "https://github.com/oxalica/rust-overlay/archive/master.tar.gz"))
+  ];
+
   environment.systemPackages = with pkgs; [
     # editors
     vim
@@ -33,12 +37,19 @@
     nano
 
     # rust
-    rustup
+    # rustup
     # rust-analyzer
+    (rust-bin.stable.latest.default.override {
+      extensions = [
+        "rust-src"      # Required for rust-analyzer
+        "rust-analyzer" # LSP server for IDEs
+      ];
+    })
 
     # golang
     go
     gopls
+    golangci-lint
     delve
 
     # zig
@@ -96,9 +107,13 @@
     lua-language-server
     stylua
 
+    # html,css,json
+    vscode-langservers-extracted
+
     # c
     gcc
     clang
+    clang-tools
     gnumake 
     cmake 
 
@@ -113,6 +128,7 @@
     podman
 
     # utils, build tools, and libraries
+    neofetch
     git
     lazygit
     just
@@ -140,5 +156,10 @@
     openssl.dev # in Nix refers to the development files for the OpenSSL library, which are needed when compiling software that uses OpenSSL
     protobuf # a mechanism for serializing structured data, developed by Google. It’s widely used for efficient data exchange between services and for storing structured information.
   ];
+
+  # Add to all users' bashrc
+  environment.interactiveShellInit = ''
+    neofetch
+  '';
 
 }
