@@ -112,8 +112,6 @@
 
     # c
     gcc
-    clang
-    clang-tools
     gnumake 
     cmake 
 
