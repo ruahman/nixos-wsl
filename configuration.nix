@@ -36,27 +36,27 @@
     neovim
     nano
 
-    # rust
+    ## rust
     # rustup
-    # rust-analyzer
     (rust-bin.stable.latest.default.override {
       extensions = [
         "rust-src"      # Required for rust-analyzer
         "rust-analyzer" # LSP server for IDEs
       ];
     })
+    vscode-extensions.vadimcn.vscode-lldb.adapter
 
-    # golang
+    ## golang
     go
     gopls
     golangci-lint
     delve
 
-    # zig
+    ## zig
     zig
     zls
 
-    # python
+    ## python
     (pkgs.python3.withPackages (ps: with ps; [
       ipython
       pytest
@@ -74,7 +74,7 @@
     ]))
     pyright
 
-    # ruby
+    ## ruby
     (ruby.withPackages (ps: with ps; [
       nokogiri
       pry
@@ -82,7 +82,7 @@
       solargraph
     ]))
 
-    # nodejs
+    ## nodejs
     nodejs
     (pkgs.buildEnv {
       name = "npm-packages";
@@ -98,7 +98,7 @@
       pathsToLink = [ "/bin" ];
     })
 
-    # lua
+    ## lua
     (pkgs.lua5_1.withPackages (lp: with lp; [
       lua
       luarocks
@@ -107,25 +107,27 @@
     lua-language-server
     stylua
 
-    # html,css,json
+    ## html,css,json
     vscode-langservers-extracted
 
-    # c
+    ## c
     gcc
+    clang
+    clang-tools
     gnumake 
     cmake 
 
-    # assembly
+    ## assembly
     nasm
 
-    # database
+    ## database
     sqlite
 
-    # containers
+    ## containers
     docker
     podman
 
-    # utils, build tools, and libraries
+    ## utils, build tools, and libraries
     neofetch
     git
     lazygit
