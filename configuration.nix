@@ -6,7 +6,11 @@
 # https://github.com/nix-community/NixOS-WSL
 
 { config, lib, pkgs, ... }:
-
+let
+  rust-version = "1.92.0";
+  zig-version = "0.15.2";
+  go-version = "1.25.5";
+in
 {
   imports = [
     # include NixOS-WSL modules
@@ -26,9 +30,6 @@
 
   programs.nix-ld.enable = true;
 
-  nixpkgs.overlays = [
-    (import (builtins.fetchTarball "https://github.com/oxalica/rust-overlay/archive/master.tar.gz"))
-  ];
 
   environment.systemPackages = with pkgs; [
     # editors
@@ -38,7 +39,7 @@
 
     ## rust
     # rustup
-    (rust-bin.stable.latest.default.override {
+    (rust-bin.stable.${rust-version}.default.override {
       extensions = [
         "rust-src"      # Required for rust-analyzer
         "rust-analyzer" # LSP server for IDEs
@@ -47,13 +48,15 @@
     vscode-extensions.vadimcn.vscode-lldb.adapter
 
     ## golang
-    go
+    # go
+    go-bin.versions.${go-version}
     gopls
     golangci-lint
     delve
 
     ## zig
-    zig
+    # zig
+    pkgs.zigpkgs.${zig-version}
     zls
 
     ## python
@@ -88,7 +91,7 @@
       name = "npm-packages";
       paths = with pkgs.nodePackages; [
         typescript
-        ts-node
+        # ts-node
         eslint
         prettier
         vscode-langservers-extracted  # for HTML/CSS/JSON
