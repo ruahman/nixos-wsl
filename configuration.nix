@@ -30,6 +30,8 @@ in
 
   programs.nix-ld.enable = true;
 
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
 
   environment.systemPackages = with pkgs; [
     # editors
@@ -38,7 +40,6 @@ in
     nano
 
     ## rust
-    # rustup
     (rust-bin.stable.${rust-version}.default.override {
       extensions = [
         "rust-src"      # Required for rust-analyzer
@@ -48,14 +49,12 @@ in
     vscode-extensions.vadimcn.vscode-lldb.adapter
 
     ## golang
-    # go
     go-bin.versions.${go-version}
     gopls
     golangci-lint
     delve
 
     ## zig
-    # zig
     pkgs.zigpkgs.${zig-version}
     zls
 
@@ -91,7 +90,6 @@ in
       name = "npm-packages";
       paths = with pkgs.nodePackages; [
         typescript
-        # ts-node
         eslint
         prettier
         vscode-langservers-extracted  # for HTML/CSS/JSON
@@ -122,6 +120,7 @@ in
 
     ## assembly
     nasm
+    fasm
 
     ## database
     sqlite
