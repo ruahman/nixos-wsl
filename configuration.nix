@@ -12,10 +12,6 @@ let
   go-version = "1.25.5";
 in
 {
-  imports = [
-    # include NixOS-WSL modules
-    <nixos-wsl/modules>
-  ];
 
   wsl.enable = true;
   wsl.defaultUser = "nixos";
@@ -61,14 +57,11 @@ in
     ## python
     (pkgs.python3.withPackages (ps: with ps; [
       ipython
-      pytest
-      requests
       numpy
       pandas
       matplotlib
       jupyterlab 
       marimo
-      flask
       pyzmq
       mypy
       ruff

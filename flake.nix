@@ -1,15 +1,17 @@
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixos-wsl.url = "github:nix-community/NixOS-WSL";
     zig-overlay.url = "github:mitchellh/zig-overlay";
     rust-overlay.url = "github:oxalica/rust-overlay";
     go-overlay.url = "github:purpleclay/go-overlay";
   };
 
-  outputs = { self, nixpkgs, zig-overlay, rust-overlay, go-overlay, ... }: {
+  outputs = { self, nixpkgs, nixos-wsl, zig-overlay, rust-overlay, go-overlay, ... }: {
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
+        nixos-wsl.nixosModules.default
         ./configuration.nix
         {
           nixpkgs.overlays = [ 
