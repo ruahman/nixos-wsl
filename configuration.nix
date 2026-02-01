@@ -33,6 +33,7 @@ in
     # editors
     vim
     neovim
+    emacs
     nano
 
     ## rust
