@@ -1,10 +1,24 @@
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixos-wsl.url = "github:nix-community/NixOS-WSL";
-    zig-overlay.url = "github:mitchellh/zig-overlay";
-    rust-overlay.url = "github:oxalica/rust-overlay";
-    go-overlay.url = "github:purpleclay/go-overlay";
+
+    # so that all other inputs use the same version of nixpkgs in order to avoid duplication
+    nixos-wsl = {
+	    url = "github:nix-community/NixOS-WSL";
+	    inputs.nixpkgs.follows = "nixpkgs";
+    };
+    zig-overlay = {
+	    url = "github:mitchellh/zig-overlay";
+	    inputs.nixpkgs.follows = "nixpkgs";
+    };
+    rust-overlay = {
+        url = "github:oxalica/rust-overlay";
+	      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    go-overlay = {
+        url = "github:purpleclay/go-overlay";
+	      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, nixos-wsl, zig-overlay, rust-overlay, go-overlay, ... }: {
