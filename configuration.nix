@@ -27,7 +27,8 @@ in
   programs.nix-ld.enable = true;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
+   
+  nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
     # editors
@@ -44,16 +45,19 @@ in
       ];
     })
     vscode-extensions.vadimcn.vscode-lldb.adapter
+    jetbrains.rust-rover
 
     ## golang
     go-bin.versions.${go-version}
     gopls
     golangci-lint
     delve
+    jetbrains.goland
 
     ## zig
     pkgs.zigpkgs.${zig-version}
     zls
+    jetbrains.clion
 
     ## python
     (pkgs.python3.withPackages (ps: with ps; [
@@ -69,6 +73,7 @@ in
       isort
     ]))
     pyright
+    jetbrains.pycharm
 
     ## ruby
     (ruby.withPackages (ps: with ps; [
@@ -76,7 +81,9 @@ in
       pry
       bundler
       solargraph
+      rubocop
     ]))
+    jetbrains.ruby-mine
 
     ## nodejs
     nodejs
@@ -92,6 +99,8 @@ in
       # Optional: add node_modules/.bin to PATH
       pathsToLink = [ "/bin" ];
     })
+    jetbrains.webstorm
+    vscode
 
     ## lua
     (pkgs.lua5_1.withPackages (lp: with lp; [
@@ -118,10 +127,26 @@ in
 
     ## database
     sqlite
+    jetbrains.datagrip
+    postgresql
+    redis
+    couchdb3
 
     ## containers
     docker
     podman
+
+    # web servers
+    nginx
+    caddy
+
+    # bitcoin
+    bitcoind
+    lnd
+    taproot-assets
+
+    # message brokers
+    apacheKafka
 
     ## utils, build tools, and libraries
     neofetch
