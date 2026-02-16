@@ -19,9 +19,13 @@
         url = "github:purpleclay/go-overlay";
 	      inputs.nixpkgs.follows = "nixpkgs";
     };
+    claude-code-nix = {
+      url = "github:sadjow/claude-code-nix";
+	    inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, nixos-wsl, zig-overlay, rust-overlay, go-overlay, ... }: {
+  outputs = { self, nixpkgs, nixos-wsl, zig-overlay, rust-overlay, go-overlay, claude-code-nix, ... }: {
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
@@ -32,6 +36,7 @@
             zig-overlay.overlays.default 
             rust-overlay.overlays.default
             go-overlay.overlays.default
+            claude-code-nix.overlays.default
           ];
         }
       ];

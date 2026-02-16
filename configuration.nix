@@ -30,6 +30,8 @@ in
    
   nixpkgs.config.allowUnfree = true;
 
+  boot.loader.systemd-boot.configurationLimit = 5;
+
   environment.systemPackages = with pkgs; [
     # editors
     vim
@@ -44,20 +46,21 @@ in
         "rust-analyzer" # LSP server for IDEs
       ];
     })
+    dioxus-cli
     vscode-extensions.vadimcn.vscode-lldb.adapter
-    jetbrains.rust-rover
+    # jetbrains.rust-rover
 
     ## golang
     go-bin.versions.${go-version}
     gopls
     golangci-lint
     delve
-    jetbrains.goland
+    # jetbrains.goland
 
     ## zig
     pkgs.zigpkgs.${zig-version}
     zls
-    jetbrains.clion
+    # jetbrains.clion
 
     ## python
     (pkgs.python3.withPackages (ps: with ps; [
@@ -66,14 +69,15 @@ in
       pandas
       matplotlib
       jupyterlab 
-      marimo
+      # marimo
       pyzmq
       mypy
       ruff
       isort
     ]))
     pyright
-    jetbrains.pycharm
+    # marimo
+    # jetbrains.pycharm
 
     ## ruby
     (ruby.withPackages (ps: with ps; [
@@ -83,7 +87,7 @@ in
       solargraph
       rubocop
     ]))
-    jetbrains.ruby-mine
+    # jetbrains.ruby-mine
 
     ## nodejs
     nodejs
@@ -99,8 +103,9 @@ in
       # Optional: add node_modules/.bin to PATH
       pathsToLink = [ "/bin" ];
     })
-    jetbrains.webstorm
-    vscode
+    bun
+    # jetbrains.webstorm
+    # vscode
 
     ## lua
     (pkgs.lua5_1.withPackages (lp: with lp; [
@@ -121,32 +126,44 @@ in
     gnumake 
     cmake 
 
+    ## php
+    php
+    phpactor
+
     ## assembly
     nasm
     fasm
 
     ## database
     sqlite
-    jetbrains.datagrip
-    postgresql
-    redis
-    couchdb3
+    surrealdb
+    surrealist
+    # jetbrains.datagrip
+    # postgresql
+    # mariadb
+    # redis
+    # couchdb3
+    # mongodb 
 
     ## containers
     docker
     podman
 
     # web servers
-    nginx
-    caddy
+    # nginx
+    # caddy
 
     # bitcoin
-    bitcoind
-    lnd
-    taproot-assets
+    # bitcoind
+    # lnd
+    # taproot-assets
 
     # message brokers
-    apacheKafka
+    # apacheKafka
+    # rabbitmq-server
+
+    # AI Agents
+    claude-code
 
     ## utils, build tools, and libraries
     neofetch
