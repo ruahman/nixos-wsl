@@ -69,7 +69,7 @@ in
       pandas
       matplotlib
       jupyterlab 
-      # marimo
+      marimo
       pyzmq
       mypy
       ruff
@@ -166,7 +166,8 @@ in
     claude-code
 
     ## utils, build tools, and libraries
-    neofetch
+    fastfetch
+    oh-my-posh
     git
     lazygit
     just
@@ -197,7 +198,8 @@ in
 
   # Add to all users' bashrc
   environment.interactiveShellInit = ''
-    neofetch
+    fastfetch
+    eval "$(oh-my-posh init bash)"
   '';
 
 }
