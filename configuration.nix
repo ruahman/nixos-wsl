@@ -36,6 +36,7 @@ in
     # editors
     vim
     neovim
+    tmux
     emacs
     nano
 
