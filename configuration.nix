@@ -6,11 +6,7 @@
 # https://github.com/nix-community/NixOS-WSL
 
 { config, lib, pkgs, ... }:
-let
-  rust-version = "1.92.0";
-  zig-version = "0.15.2";
-  go-version = "1.25.5";
-in
+
 {
 
   wsl.enable = true;
@@ -32,83 +28,22 @@ in
 
   boot.loader.systemd-boot.configurationLimit = 5;
 
+  users.users.nixos = {
+    shell = pkgs.nushell;
+  };
+
   environment.systemPackages = with pkgs; [
-    # editors
     vim
-    neovim
     tmux
     emacs
     nano
+    git
+    lazygit
+    fastfetch
+    oh-my-posh
 
-    ## rust
-    (rust-bin.stable.${rust-version}.default.override {
-      extensions = [
-        "rust-src"      # Required for rust-analyzer
-        "rust-analyzer" # LSP server for IDEs
-      ];
-    })
-    dioxus-cli
-    vscode-extensions.vadimcn.vscode-lldb.adapter
-    # jetbrains.rust-rover
-
-    ## golang
-    go-bin.versions.${go-version}
-    gopls
-    golangci-lint
-    delve
-    # jetbrains.goland
-
-    ## zig
-    pkgs.zigpkgs.${zig-version}
-    zls
-    # jetbrains.clion
-
-    ## python
-    (pkgs.python3.withPackages (ps: with ps; [
-      ipython
-      numpy
-      pandas
-      matplotlib
-      jupyterlab 
-      marimo
-      pyzmq
-      mypy
-      ruff
-      isort
-    ]))
-    pyright
-    # marimo
-    # jetbrains.pycharm
-
-    ## ruby
-    (ruby.withPackages (ps: with ps; [
-      nokogiri
-      pry
-      bundler
-      solargraph
-      rubocop
-    ]))
-    # jetbrains.ruby-mine
-
-    ## nodejs
-    nodejs
-    (pkgs.buildEnv {
-      name = "npm-packages";
-      paths = with pkgs.nodePackages; [
-        typescript
-        eslint
-        prettier
-        vscode-langservers-extracted  # for HTML/CSS/JSON
-        typescript-language-server
-      ];
-      # Optional: add node_modules/.bin to PATH
-      pathsToLink = [ "/bin" ];
-    })
-    bun
-    # jetbrains.webstorm
-    # vscode
-
-    ## lua
+    ## neovim
+    neovim
     (pkgs.lua5_1.withPackages (lp: with lp; [
       lua
       luarocks
@@ -116,88 +51,24 @@ in
     ]))
     lua-language-server
     stylua
-
-    ## html,css,json
-    vscode-langservers-extracted
-
-    ## c
-    gcc
-    clang
-    clang-tools
-    gnumake 
-    cmake 
-
-    ## php
-    php
-    phpactor
-
-    ## assembly
-    nasm
-    fasm
-
-    ## database
-    sqlite
-    surrealdb
-    surrealist
-    # jetbrains.datagrip
-    # postgresql
-    # mariadb
-    # redis
-    # couchdb3
-    # mongodb 
+    tree-sitter
+    ripgrep
+    fzf
+    xclip
 
     ## containers
     docker
     podman
 
-    # web servers
-    # nginx
-    # caddy
-
-    # bitcoin
-    # bitcoind
-    # lnd
-    # taproot-assets
-
-    # message brokers
-    # apacheKafka
-    # rabbitmq-server
-
     # AI Agents
     claude-code
-
-    ## utils, build tools, and libraries
-    fastfetch
-    oh-my-posh
-    git
-    lazygit
-    just
-    watchexec
-    tree-sitter
-    ripgrep
-    fzf
-    inotify-tools # is a set of command-line utilities for monitoring filesystem events
-    tree
-    jq
-    bat
-    curl
-    xclip
-    glibc # (GNU C Library) is the core library that provides the standard C functions used by most Linux applications and system programs 
-    libselinux # provides an API for interacting with SELinux (Security-Enhanced Linux), a powerful access control system built into the Linux kernel.
-    stdenv.cc.cc.lib   #  the runtime libraries provided by the C/C++ compiler used in the standard environment 
-    zlib # a widely used software library for data compression.
-    openssl
-    glib # a low-level, general-purpose utility library written in C, forming the foundation of the GNOME ecosystem and many other Linux applications.
-    binutils # a collection of binary tools used for handling object files, libraries, and executables in Unix-like systems. It’s an essential part of the toolchain for compiling and linking programs
-    coreutils # a package containing the essential command-line utilities for Unix-like operating systems
-    glibc.dev # the development files for the GNU C Library (). These are needed when compiling software that links against glibc
-    pkg-config # a helper tool used in compiling and linking software, especially in C and C++ projects. It simplifies the process of discovering and using libraries
-    openssl # full-featured open-source toolkit for implementing the Secure Sockets Layer (SSL) and Transport Layer Security (TLS) protocols, as well as general-purpose cryptography.
-    openssl.dev # in Nix refers to the development files for the OpenSSL library, which are needed when compiling software that uses OpenSSL
-    protobuf # a mechanism for serializing structured data, developed by Google. It’s widely used for efficient data exchange between services and for storing structured information.
   ];
 
   # Add to all users' bashrc
+  home-manager.useGlobalPkgs = true;
+  home-manager.useUserPackages = true;
+  home-manager.users.nixos = import ./home.nix;
+
   environment.interactiveShellInit = ''
     fastfetch
     eval "$(oh-my-posh init bash)"

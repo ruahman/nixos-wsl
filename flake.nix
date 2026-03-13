@@ -23,14 +23,19 @@
       url = "github:sadjow/claude-code-nix";
 	    inputs.nixpkgs.follows = "nixpkgs";
     };
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, nixos-wsl, zig-overlay, rust-overlay, go-overlay, claude-code-nix, ... }: {
+  outputs = { self, nixpkgs, nixos-wsl, zig-overlay, rust-overlay, go-overlay, claude-code-nix, home-manager, ... }: {
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
         nixos-wsl.nixosModules.default
         ./configuration.nix
+        home-manager.nixosModules.home-manager
         {
           nixpkgs.overlays = [ 
             zig-overlay.overlays.default 
