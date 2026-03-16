@@ -11,10 +11,16 @@ in
 
   programs.home-manager.enable = true;
 
-  programs.nushell.enable = true;
+  programs.nushell = {
+    enable = true;
+    extraConfig = ''
+      $env.config.show_banner = false
+    '';
+  };
 
-  home.sessionVariables = {
-    SHELL = "${pkgs.nushell}/bin/nu";
+  programs.starship = {
+    enable = true;
+    enableNushellIntegration = true;
   };
 
   home.packages = with pkgs; [
