@@ -39,6 +39,9 @@ in
     gopls
     golangci-lint
     delve
+    gofumpt
+    golines
+    gotools
 
     ## nodejs
     nodejs
@@ -76,13 +79,13 @@ in
     zls
 
     ## ruby
-    (ruby.withPackages (ps: with ps; [
-      nokogiri
-      pry
-      bundler
-      solargraph
-      rubocop
-    ]))
+    # (ruby.withPackages (ps: with ps; [
+    #   nokogiri
+    #   pry
+    #   bundler
+    #   solargraph
+    #   rubocop
+    # ]))
 
     ## c/c++
     gcc

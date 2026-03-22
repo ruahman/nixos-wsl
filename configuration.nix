@@ -39,8 +39,11 @@
     nano
     git
     lazygit
+    wget
+    unzip
     fastfetch
     oh-my-posh
+    yazi
 
     ## neovim
     neovim
@@ -53,6 +56,7 @@
     stylua
     tree-sitter
     ripgrep
+    fd
     fzf
     xclip
 
@@ -62,6 +66,7 @@
 
     # AI Agents
     claude-code
+    claude-code-acp
   ];
 
   # Add to all users' bashrc
