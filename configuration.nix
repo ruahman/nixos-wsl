@@ -60,6 +60,9 @@
     fzf
     xclip
 
+    # for copilot
+    nodejs
+
     ## containers
     docker
     podman
@@ -67,6 +70,7 @@
     # AI Agents
     claude-code
     claude-code-acp
+    opencode
   ];
 
   # Add to all users' bashrc
