@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 let
-  rust-version = "1.92.0";
-  go-version = "1.25.5";
+  rust-version = "1.94.0";
+  go-version = "1.26.1";
   zig-version = "0.15.2";
 in
 {
