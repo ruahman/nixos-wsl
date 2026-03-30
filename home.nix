@@ -15,6 +15,7 @@ in
     enable = true;
     extraConfig = ''
       $env.config.show_banner = false
+      alias fg = job unfreeze
     '';
   };
 
@@ -31,7 +32,7 @@ in
         "rust-analyzer" # LSP server for IDEs
       ];
     })
-    dioxus-cli
+    # dioxus-cli
     vscode-extensions.vadimcn.vscode-lldb.adapter
 
     ## golang
@@ -41,7 +42,8 @@ in
     delve
     gofumpt
     golines
-    gotools
+    # solves bundler conflict with ruby
+    (lib.lowPrio gotools)
 
     ## nodejs
     nodejs
@@ -79,13 +81,13 @@ in
     zls
 
     ## ruby
-    # (ruby.withPackages (ps: with ps; [
-    #   nokogiri
-    #   pry
-    #   bundler
-    #   solargraph
-    #   rubocop
-    # ]))
+    (ruby.withPackages (ps: with ps; [
+      nokogiri
+      pry
+      bundler
+      solargraph
+      rubocop
+    ]))
 
     ## c/c++
     gcc
@@ -99,13 +101,27 @@ in
     ## html,css,json
     vscode-langservers-extracted
 
+    ## copilot
+    copilot-language-server
+
     ## assembly
     nasm
-    # fasm
+    fasm
 
     ## database
     sqlite
+    postgresql
     surrealdb
+    couchdb3
+    redis
+
+    ## messaging
+    (lib.lowPrio activemq)
+
+    ## bitcoin
+    bitcoind
+    lnd
+    taproot-assets
 
     ## tools
     gnumake 

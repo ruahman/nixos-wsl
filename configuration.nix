@@ -69,10 +69,9 @@
 
     # AI Agents
     claude-code
-    claude-code-acp
-    # opencode
-    # codex
-    # gemini-cli
+    codex
+    gemini-cli
+    opencode
   ];
 
   # Add to all users' bashrc

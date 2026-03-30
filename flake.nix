@@ -23,13 +23,17 @@
       url = "github:sadjow/claude-code-nix";
 	    inputs.nixpkgs.follows = "nixpkgs";
     };
+    neovim-nightly-overlay = {
+      url = "github:nix-community/neovim-nightly-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { self, nixpkgs, nixos-wsl, zig-overlay, rust-overlay, go-overlay, claude-code-nix, home-manager, ... }: {
+  outputs = { self, nixpkgs, nixos-wsl, zig-overlay, rust-overlay, go-overlay, claude-code-nix, neovim-nightly-overlay, home-manager, ... }: {
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
@@ -42,6 +46,7 @@
             rust-overlay.overlays.default
             go-overlay.overlays.default
             claude-code-nix.overlays.default
+            neovim-nightly-overlay.overlays.default
           ];
         }
       ];
