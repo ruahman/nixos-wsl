@@ -44,6 +44,9 @@
     fastfetch
     oh-my-posh
     yazi
+    file 
+    pass
+    yq
 
     ## neovim
     neovim
@@ -69,6 +72,8 @@
 
     # AI Agents
     claude-code
+    # claude-code-acp
+    claude-agent-acp
     codex
     gemini-cli
     opencode
