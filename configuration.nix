@@ -72,12 +72,18 @@
 
     # AI Agents
     claude-code
-    # claude-code-acp
     claude-agent-acp
-    codex
-    gemini-cli
     opencode
+    codex
   ];
+
+  programs.tmux = {
+    enable = true;
+    extraConfig = ''
+      set -g default-terminal "tmux-256color"
+      set -as terminal-overrides ",xterm*:Tc"
+    '';
+  };
 
   # Add to all users' bashrc
   home-manager.useGlobalPkgs = true;
