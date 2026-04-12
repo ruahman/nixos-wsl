@@ -23,6 +23,10 @@
       url = "github:sadjow/claude-code-nix";
 	    inputs.nixpkgs.follows = "nixpkgs";
     };
+    # opencode-flake = { 
+    #   url = "github:aodhanhayter/opencode-flake";
+    #  inputs.nixpkgs.follows = "nixpkgs";
+    # };
     neovim-nightly-overlay = {
       url = "github:nix-community/neovim-nightly-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -47,6 +51,9 @@
             go-overlay.overlays.default
             claude-code-nix.overlays.default
             neovim-nightly-overlay.overlays.default
+            # (final: prev: {
+            #   opencode = opencode-flake.packages.${final.system}.default;
+            # })
           ];
         }
       ];

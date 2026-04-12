@@ -47,6 +47,7 @@
     file 
     pass
     yq
+    google-chrome
 
     ## neovim
     neovim
@@ -82,6 +83,7 @@
     extraConfig = ''
       set -g default-terminal "tmux-256color"
       set -as terminal-overrides ",xterm*:Tc"
+      set -g mouse on
     '';
   };
 

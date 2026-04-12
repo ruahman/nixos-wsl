@@ -56,18 +56,23 @@ in
 
     ## nodejs
     nodejs
-    (pkgs.buildEnv {
-      name = "npm-packages";
-      paths = with pkgs.nodePackages; [
-        typescript
-        eslint
-        prettier
-        vscode-langservers-extracted  # for HTML/CSS/JSON
-        typescript-language-server
-      ];
-      # Optional: add node_modules/.bin to PATH
-      pathsToLink = [ "/bin" ];
-    })
+    typescript
+    typescript-language-server
+    tsx 
+    eslint
+    prettier
+    # (pkgs.buildEnv {
+    #   name = "npm-packages";
+    #   paths = with pkgs.nodePackages; [
+    #     typescript
+    #     eslint
+    #     prettier
+    #     vscode-langservers-extracted  # for HTML/CSS/JSON
+    #     typescript-language-server
+    #   ];
+    #   # Optional: add node_modules/.bin to PATH
+    #   pathsToLink = [ "/bin" ];
+    # })
     bun
 
     ## python
