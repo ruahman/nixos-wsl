@@ -13,22 +13,17 @@ in
 
   programs.nushell = {
     enable = true;
-    extraConfig = ''
-      $env.config.show_banner = false
-      alias fg = job unfreeze
-      def --env y [...args] {
-        let tmp = (mktemp -t "yazi-cwd.XXXXXX")
-        yazi ...$args --cwd-file $tmp
-        let cwd = (open $tmp)
-        if $cwd != "" and $cwd != $env.PWD {
-          cd $cwd
-        }
-        rm -f $tmp
-      }
-    '';
+    settings = {
+      show_banner = false;
+    };
   };
 
   programs.starship = {
+    enable = true;
+    enableNushellIntegration = true;
+  };
+
+  programs.carapace = {
     enable = true;
     enableNushellIntegration = true;
   };
@@ -73,7 +68,7 @@ in
     #   # Optional: add node_modules/.bin to PATH
     #   pathsToLink = [ "/bin" ];
     # })
-    bun
+    #bun
 
     ## python
     (pkgs.python312.withPackages (ps: with ps; [
@@ -120,22 +115,22 @@ in
 
     ## assembly
     nasm
-    fasm
+    #fasm
 
     ## database
     sqlite
     postgresql
-    surrealdb
-    couchdb3
-    redis
+    #surrealdb
+    #couchdb3
+    #redis
 
     ## messaging
     (lib.lowPrio activemq)
 
     ## bitcoin
-    bitcoind
-    lnd
-    taproot-assets
+    #bitcoind
+    #lnd
+    #taproot-assets
 
     ## tools
     gnumake 
