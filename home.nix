@@ -16,6 +16,9 @@ in
     settings = {
       show_banner = false;
     };
+    extraConfig = ''
+      fastfetch
+    '';
   };
 
   programs.starship = {
@@ -142,6 +145,7 @@ in
     jq
     bat
     curl
+    lf
 
     ## libraries
     pkg-config # a helper tool used in compiling and linking software, especially in C and C++ projects. It simplifies the process of discovering and using libraries
