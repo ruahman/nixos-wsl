@@ -47,7 +47,7 @@
     file 
     pass
     yq
-    google-chrome
+    #google-chrome
 
     ## neovim
     neovim
@@ -65,7 +65,7 @@
     xclip
 
     # for copilot
-    nodejs
+    # nodejs
 
     ## containers
     docker
@@ -75,7 +75,11 @@
     claude-code
     claude-agent-acp
     opencode
-    codex
+    # codex
+
+    # dictionaries
+    hunspell
+    hunspellDicts.en_US
   ];
 
   programs.tmux = {

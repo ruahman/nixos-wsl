@@ -32,6 +32,7 @@ in
   };
 
   home.packages = with pkgs; [
+
     ## rust
     (rust-bin.stable.${rust-version}.default.override {
       extensions = [
@@ -39,7 +40,7 @@ in
         "rust-analyzer" # LSP server for IDEs
       ];
     })
-    # dioxus-cli
+
     vscode-extensions.vadimcn.vscode-lldb.adapter
 
     ## golang
@@ -59,33 +60,18 @@ in
     tsx 
     eslint
     prettier
-    # (pkgs.buildEnv {
-    #   name = "npm-packages";
-    #   paths = with pkgs.nodePackages; [
-    #     typescript
-    #     eslint
-    #     prettier
-    #     vscode-langservers-extracted  # for HTML/CSS/JSON
-    #     typescript-language-server
-    #   ];
-    #   # Optional: add node_modules/.bin to PATH
-    #   pathsToLink = [ "/bin" ];
-    # })
-    #bun
 
     ## python
-    (pkgs.python312.withPackages (ps: with ps; [
-      ipython
-      numpy
-      pandas
-      matplotlib
-      jupyterlab 
-      marimo
-      pyzmq
-      mypy
-      ruff
-      isort
-    ]))
+    python314
+    python314Packages.ipython
+    python314Packages.numpy
+    python314Packages.pandas
+    python314Packages.matplotlib
+    python314Packages.pyzmq
+    marimo
+    mypy
+    isort
+    ruff
     pyright
 
     ## zig
@@ -93,16 +79,16 @@ in
     zls
 
     ## ruby
-    (ruby.withPackages (ps: with ps; [
-      nokogiri
-      pry
-      bundler
-      solargraph
-      rubocop
-    ]))
+    ruby 
+    rubyPackages.nokogiri
+    pry
+    rubocop
+    solargraph
+    # bundler
 
     ## c/c++
     gcc
+    # (lib.lowPrio clang)
     # clang
     # clang-tools
 
