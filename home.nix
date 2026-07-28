@@ -114,7 +114,7 @@ in
     #redis
 
     ## messaging
-    (lib.lowPrio activemq)
+    # (lib.lowPrio activemq)
 
     ## bitcoin
     #bitcoind

@@ -47,7 +47,6 @@
     file 
     pass
     yq
-    #google-chrome
 
     ## neovim
     neovim
@@ -64,9 +63,6 @@
     fzf
     xclip
 
-    # for copilot
-    # nodejs
-
     ## containers
     docker
     podman
@@ -75,7 +71,6 @@
     claude-code
     claude-agent-acp
     opencode
-    # codex
 
     # dictionaries
     hunspell
