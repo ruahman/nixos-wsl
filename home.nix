@@ -60,7 +60,7 @@ in
     tsx 
     eslint
     prettier
-    nub
+    #nub
 
     ## python
     python314
