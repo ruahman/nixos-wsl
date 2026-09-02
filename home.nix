@@ -1,8 +1,8 @@
 { config, pkgs, ... }:
 let
-  rust-version = "1.94.0";
-  go-version = "1.26.1";
-  zig-version = "0.15.2";
+  rust-version = "1.98.0";
+  go-version = "1.26.7";
+  zig-version = "0.16.0";
 in
 {
   home.username = "nixos";
@@ -60,7 +60,6 @@ in
     tsx 
     eslint
     prettier
-    #nub
 
     ## python
     python314
@@ -100,22 +99,12 @@ in
     ## html,css,json
     vscode-langservers-extracted
 
-    ## copilot
-    copilot-language-server
-
     ## assembly
     nasm
-    #fasm
 
     ## database
     sqlite
-    postgresql
-    #surrealdb
-    #couchdb3
-    #redis
 
-    ## messaging
-    # (lib.lowPrio activemq)
 
     ## bitcoin
     #bitcoind
