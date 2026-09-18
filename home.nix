@@ -60,6 +60,7 @@ in
     tsx 
     eslint
     prettier
+    nub
 
     ## python
     python314
@@ -93,8 +94,8 @@ in
     # clang-tools
 
     ## php
-    php
-    phpactor
+    # php
+    # phpactor
 
     ## html,css,json
     vscode-langservers-extracted
@@ -112,6 +113,7 @@ in
     #taproot-assets
 
     ## tools
+    herdr
     gnumake 
     cmake 
     just
