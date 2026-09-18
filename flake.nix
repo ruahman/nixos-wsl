@@ -20,7 +20,7 @@
 	      inputs.nixpkgs.follows = "nixpkgs";
     };
     nub-overlay = {
-        url = "https://github.com/alleneubank/nub-overlay";
+        url = "github:alleneubank/nub-overlay";
 	      inputs.nixpkgs.follows = "nixpkgs";
     };
     claude-code-nix = {
