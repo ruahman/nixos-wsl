@@ -75,6 +75,9 @@ in
     ruff
     pyright
 
+    ## mojo
+    mojo-bin
+
     ## zig
     pkgs.zigpkgs.${zig-version}
     zls
